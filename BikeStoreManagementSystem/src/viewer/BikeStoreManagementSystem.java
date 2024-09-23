@@ -272,7 +272,7 @@ public class BikeStoreManagementSystem {
         System.out.println("Back to menu ? [Yes] : [No]");
         Scanner sc = new Scanner(System.in);
         String ans = sc.nextLine().trim().toUpperCase();
-        if (ans.equals("No")) {
+        if (ans.equals("NO")) {
             System.out.println("Exiting");
             Platform.exit();
         } else {
