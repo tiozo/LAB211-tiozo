@@ -79,17 +79,16 @@ public class BikeStoreManagementSystem {
         String id, name, brandId = null, categoryId = null;
         int modelYear;
         Double listedPrice;
-        do {
-            id = Validation.checkString("Enter Product ID: ");
-        } while (pm.isExist(id)); /// check exist;
 
         name = Validation.checkString("Enter Product's Name: ");
         /// need to check the existing Brand and Category -> done
         /// dropdown 
         List<String> optionsB = new ArrayList<>();
         for (Brand b: pm.listB) {
-            optionsB.add((new Brand(b.getId()).getId()));
+            ///optionsB.add((new Brand(b.getId()).getId()));
+            optionsB.add(b.toString());
         }
+        
         System.out.print("Choose new Product Brand ID: \n");
         int choice;
         do {
@@ -106,7 +105,8 @@ public class BikeStoreManagementSystem {
 
         List<String> optionsC = new ArrayList<>();
         for (Category c: pm.listC) {
-            optionsC.add((new Category(c.getId()).getId()));
+            ///optionsC.add((new Category(c.getId()).getId()));
+            optionsC.add(c.toString());
         }
         System.out.print("Choose new Product Category ID: \n");
         do {
@@ -121,6 +121,8 @@ public class BikeStoreManagementSystem {
         
         modelYear = Validation.checkInt("Enter Product's Model Year: ");
         listedPrice = Validation.checkDouble("Enter Product's Listed Price: ");
+        
+        id = pm.getBrand(brandId).name.substring(0, 2) + "_" + Integer.toString(pm.listP.size());
         
         pm.addItem(new Product(id, name, brandId, categoryId, modelYear, listedPrice));
     }
@@ -179,7 +181,8 @@ public class BikeStoreManagementSystem {
             /// modify to become a choosing list | done, pack it into a class
             List<String> optionsB = new ArrayList<>();
             for (Brand b: pm.listB) {
-                optionsB.add((new Brand(b.getId()).getId()));
+                ////optionsB.add((new Brand(b.getId()).getId()));
+                optionsB.add(b.toString());
             }
             optionsB.add("Keep current.");
             System.out.print("Choose new Product Brand ID: \n");
@@ -194,7 +197,8 @@ public class BikeStoreManagementSystem {
 
             List<String> optionsC = new ArrayList<>();
             for (Category c: pm.listC) {
-                optionsC.add((new Category(c.getId()).getId()));
+                ///optionsC.add((new Category(c.getId()).getId()));
+                optionsC.add(c.toString());
             }
             optionsC.add("Keep current.");
             System.out.print("Choose new Product Category ID: \n");
